@@ -4,8 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+            @card
+                @slot('title')
+                    {{ __('Reset Password') }}
+                @endslot
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.request') }}">
@@ -21,8 +23,8 @@
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
                                 @endif
                             </div>
                         </div>
@@ -35,8 +37,8 @@
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
                                 @endif
                             </div>
                         </div>
@@ -58,7 +60,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            @endcard
         </div>
     </div>
 </div>

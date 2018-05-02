@@ -4,16 +4,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+            @card
+                @slot('title')
+                    {{ __('Register') }}
+                @endslot
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('First Name')
-                            }}</label>
+                            <label for="first_name" class="col-md-4 col-form-label text-md-right">
+                                {{ __('First Name') }}
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="first_name" type="text"
@@ -22,15 +25,15 @@
 
                                 @if ($errors->has('first_name'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('first_name') }}</strong>
+                                        </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Last Name')
-                            }}</label>
+                                }}</label>
 
                             <div class="col-md-6">
                                 <input id="last_name" type="text"
@@ -39,8 +42,8 @@
 
                                 @if ($errors->has('last_name'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('last_name') }}</strong>
+                                        </span>
                                 @endif
                             </div>
                         </div>
@@ -53,8 +56,8 @@
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
                                 @endif
                             </div>
                         </div>
@@ -67,8 +70,8 @@
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
                                 @endif
                             </div>
                         </div>
@@ -90,7 +93,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            @endcard
         </div>
     </div>
 </div>

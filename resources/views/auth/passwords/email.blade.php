@@ -4,8 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+            @card
+                @slot('title')
+                    {{ __('Reset Password') }}
+                @endslot
 
                 <div class="card-body">
                     @if (session('status'))
@@ -25,8 +27,8 @@
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
                                 @endif
                             </div>
                         </div>
@@ -40,7 +42,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            @endcard
         </div>
     </div>
 </div>
