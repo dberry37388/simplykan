@@ -1,100 +1,111 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            @card
-                @slot('title')
-                    {{ __('Register') }}
-                @endslot
+    <div class="uk-container">
+        <div class="uk-flex-center" uk-grid>
+            <div class="uk-width-1-2@m">
+                <div class="uk-card uk-card-default">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-right">
-                                {{ __('First Name') }}
-                            </label>
-
-                            <div class="col-md-6">
-                                <input id="first_name" type="text"
-                                       class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
-                                       name="first_name" value="{{ old('first_name') }}" required autofocus>
-
-                                @if ($errors->has('first_name'))
-                                    <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('first_name') }}</strong>
-                                        </span>
-                                @endif
-                            </div>
+                    <div class="uk-card-header">
+                        <div class="uk-card-title">
+                            Create Your {{ config('app.name') }} Account
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Last Name')
-                                }}</label>
+                    <div class="uk-card-body">
 
-                            <div class="col-md-6">
-                                <input id="last_name" type="text"
-                                       class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
-                                       name="last_name" value="{{ old('last_name') }}" required>
+                        <form action="{{ route('register') }}" method="post">
+                            @csrf
 
-                                @if ($errors->has('last_name'))
-                                    <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('last_name') }}</strong>
-                                        </span>
-                                @endif
-                            </div>
-                        </div>
+                            <fieldset class="uk-fieldset">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                <div class="uk-margin">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon" data-uk-icon="icon: user"></span>
+                                        <input type="text" name="first_name" id="first_name" class="uk-input{{ $errors->has('first_name') ? ' uk-form-danger' : '' }}"
+                                               placeholder="{{ __('First Name') }}" value="{{ old('first_name') }}" required>
+                                    </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                    @if($errors->has('first_name'))
+                                        <small class="uk-text-danger">
+                                            {{ $errors->first('first_name') }}
+                                        </small>
+                                    @endif
+                                </div>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                @endif
-                            </div>
-                        </div>
+                                <div class="uk-margin">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon" data-uk-icon="icon: user"></span>
+                                        <input name="last_name" id="last_name" class="uk-input{{ $errors->has('last_name') ? ' uk-form-danger' : '' }}"
+                                               placeholder="{{ __('Last Name') }}" type="text" value="{{ old('last_name') }}" required>
+                                    </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    @if($errors->has('last_name'))
+                                        <small class="uk-text-danger">
+                                            {{ $errors->first('last_name') }}
+                                        </small>
+                                    @endif
+                                </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <div class="uk-margin">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon" data-uk-icon="icon: mail"></span>
+                                        <input type="email" name="email" id="email" value="{{ old('email') }}"
+                                               class="uk-input{{ $errors->has('email') ? ' uk-form-danger' : '' }}"
+                                               placeholder="{{ __('Email Address') }}" required>
+                                    </div>
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                @endif
-                            </div>
-                        </div>
+                                    @if($errors->has('email'))
+                                        <small class="uk-text-danger">
+                                            {{ $errors->first('email') }}
+                                        </small>
+                                    @endif
+                                </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                <div class="uk-margin">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon" data-uk-icon="icon: lock"></span>
+                                        <input type="password" name="password" id="password"
+                                               class="uk-input{{ $errors->has('password') ? ' uk-form-danger' : '' }}"
+                                               placeholder="Password" required>
+                                    </div>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
+                                    @if($errors->has('password'))
+                                        <small class="uk-text-danger">
+                                            {{ $errors->first('password') }}
+                                        </small>
+                                    @endif
+                                </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                                <div class="uk-margin">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon" data-uk-icon="icon: lock"></span>
+                                        <input type="password" name="password_confirmation" id="password_confirmation"
+                                               class="uk-input{{ $errors->has('password_confirmation') ? ' uk-form-danger' : '' }}"
+                                               placeholder="{{ __('Retype Password') }}" required>
+                                    </div>
+
+                                    @if($errors->has('password_confirmation'))
+                                        <small class="uk-text-danger">
+                                            {{ $errors->first('password_confirmation') }}
+                                        </small>
+                                    @endif
+                                </div>
+
+                                <div class="uk-margin">
+                                    <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1">
+                                        {{ __('Create Account') }}
+                                    </button>
+                                </div>
+
+                                <p class="uk-text-small uk-text-center uk-text-muted">
+                                    Already have a {{ config('app.name') }} account? <a href="{{ route('login') }}">{{ __('Sign in') }}.</a>
+                                </p>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
-            @endcard
+            </div>
         </div>
     </div>
-</div>
 @endsection

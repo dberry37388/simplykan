@@ -1,23 +1,81 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+@import "~sass-material-design-colors/palette";
 
 // Variables
 @import "variables";
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// Default UIKit variables and available mixins.
+@import "~uikit/src/scss/variables-theme.scss";
+@import "~uikit/src/scss/mixins-theme.scss";
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// Custom mixin overwrites.
+
+// Import UIkit.
+@import "~uikit/src/scss/uikit-theme.scss";
+
+[class*="uk-navbar-dropdown-bottom"] {
+  //margin-top: 0;
 }
 
-.navbar-brand {
+.uk-navbar-container {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.uk-logo {
+  img {
+    padding-top: 2px;
+    height: 20px !important;
+  }
+}
+
+main {
+  margin-top: 2rem;
+}
+
+.uk-card {
+  //box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 4px rgba(0,0,0,0.23);
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.23);
+}
+
+.uk-card-default .uk-card-header {
+  border-bottom: 0;
+}
+
+.uk-card-title {
   font-weight: 300;
 }
 
-.card-title {
-  margin-bottom: 1.5em;
-  font-weight: 300;
+.uk-card-small .uk-card-body {
+  padding: 10px 20px 20px;
+}
+
+.tm-sidebar-left {
+  position: fixed;
+  z-index: 100;
+  top: 80px;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 240px !important;
+  padding: 40px 40px 60px 40px;
+  border-right: 1px #e5e5e5 solid;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.tm-sidebar-left::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+.tm-sidebar-left::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+.tm-sidebar-left::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #bdbdbd;
 }

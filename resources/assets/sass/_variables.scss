@@ -1,8 +1,31 @@
 
 // Body
-$body-bg: #f5f8fa;
+$global-background: #f5f8fa;
+$global-danger-background: $red;
+$global-font-family: Roboto, sans-serif;
+$global-primary-background: $indigo;
+$global-secondary-background: $pink;
 
-// Typography
-$font-family-sans-serif: "Roboto", sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$global-success-background: $green-500;
+
+$base-body-font-size: 0.9375rem;
+$base-body-color: rgba(0,0,0,0.87);
+
+
+$logo-font-size: 1.2rem;
+
+$navbar-background: $indigo;
+$inverse-logo-color: #fff;
+
+$offcanvas-bar-background: #fff;
+$offcanvas-bar-color-mode: dark;
+
+$card-title-font-size: 24px;
+$card-body-padding-horizontal: 40px !default;
+$card-body-padding-vertical: 10px !default;
+$card-default-background: #fff;
+$card-default-color: rgba(0,0,0,0.87);
+
+// Forms
+$form-height: 50px;
+$form-background: #ffffff;

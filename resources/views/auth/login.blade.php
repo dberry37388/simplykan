@@ -1,69 +1,72 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            @card
-                @slot('title')
-                    {{ __('Login') }}
-                @endslot
 
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
+    <div class="uk-container">
+        <div class="uk-flex-center" uk-grid>
+            <div class="uk-width-1-2@m">
+                <div class="uk-card uk-card-default">
 
-                    <div class="form-group row">
-                        <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                            @if ($errors->has('email'))
-                                <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                            @endif
+                    <div class="uk-card-header">
+                        <div class="uk-card-title">
+                            Sign Into Your Account
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                    <div class="uk-card-body">
 
-                        <div class="col-md-6">
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                        <form action="{{ route('login') }}" method="post">
+                            @csrf
+                            <fieldset class="uk-fieldset">
+                                <div class="uk-margin">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon" data-uk-icon="icon: mail"></span>
+                                        <input name="email" id="email" class="uk-input{{ $errors->has('email') ? ' uk-form-danger' : '' }}"
+                                               placeholder="{{ __('Email Address') }}" type="text" required>
+                                    </div>
 
-                            @if ($errors->has('password'))
-                                <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                            @endif
-                        </div>
+                                    @if($errors->has('email'))
+                                        <small class="uk-text-danger">
+                                            {{ $errors->first('email') }}
+                                        </small>
+                                    @endif
+                                </div>
+
+                                <div class="uk-margin">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon" data-uk-icon="icon: lock"></span>
+                                        <input name="password" id="password" class="uk-input" placeholder="Password"
+                                               type="password" required>
+                                    </div>
+
+                                    @if($errors->has('password'))
+                                        <small class="uk-text-danger">
+                                            {{ $errors->first('password') }}
+                                        </small>
+                                    @endif
+                                </div>
+
+                                <div class="uk-margin">
+                                    <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1">LOG IN</button>
+                                </div>
+
+                                <p class="uk-text-small uk-text-center uk-text-muted">
+                                    Forgot your password? We can help with that.
+                                    <a href="{{ route('password.request') }}">Click here</a> to request a new one.
+                                </p>
+                            </fieldset>
+                        </form>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-6 offset-md-4">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                        </div>
+                    <div class="uk-card-footer">
+                        <p class="uk-text-small">
+                            Don't have a {{ config('app.name') }} account? <a href="{{ route('register') }}">Click here</a>
+                            to sign up for your 30-day free trial. No credit card required, and it only takes a few seconds.
+                        </p>
                     </div>
+                </div>
+            </div>
 
-                    <div class="form-group row mb-0">
-                        <div class="col-md-8 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Login') }}
-                            </button>
-
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                        </div>
-                    </div>
-                </form>
-            @endcard
         </div>
     </div>
-</div>
 @endsection
