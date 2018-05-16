@@ -18,3 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'projects'], function() {
+    
+    Route::get('create', 'ProjectController@create')->name('createProject');
+    Route::post('/', 'ProjectController@store')->name('storeProject');
+    
+    Route::get('{project}', 'ProjectController@show')->name('showProject');
+    Route::put('{project}', 'ProjectController@update')->name('updateProject');
+    Route::delete('{project}', 'ProjectController@destroy')->name('deleteProject');
+    
+    Route::get('switch/{project}', 'SwitchProjectsController@update')->name('switchProject');
+});

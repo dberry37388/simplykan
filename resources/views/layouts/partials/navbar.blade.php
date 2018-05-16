@@ -5,6 +5,39 @@
             <span class="material-icons">done_all</span> &nbsp;
             <img src="{{ asset('images/simplykan-logo.png') }}" alt="SimplyKan">
         </a>
+
+        <ul class="uk-navbar-nav">
+
+            @auth
+                <li>
+                    <a href="#">Projects</a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li class="uk-nav-header">Current Project</li>
+
+                            <li>
+                                <a href="{{ route('showProject', $currentUser->currentProject) }}">
+                                    {{ $currentUser->currentProject->title }}
+                                </a>
+                            </li>
+
+                            <li class="uk-nav-header">Recent Projects</li>
+
+                            @forelse ($recentProjects as $project)
+                                <li>
+                                    <a href="{{ route('switchProject', $project) }}">{{ $project->title }}</a>
+                                </li>
+                            @empty
+                                <li>
+                                    <a href="{{ route('createProject') }}"> No recent projects. Create one?</a>
+                                </li>
+                            @endforelse
+                        </ul>
+                    </div>
+                </li>
+            @endauth
+
+        </ul>
     </div>
 
     <div class="uk-navbar-right">

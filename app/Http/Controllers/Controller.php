@@ -10,4 +10,17 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    
+    /**
+     * @var \Illuminate\Contracts\Auth\Authenticatable|null
+     */
+    protected $currentUser;
+    
+    /**
+     * Controller constructor.
+     */
+    public function __construct()
+    {
+        $this->currentUser = auth()->user();
+    }
 }
