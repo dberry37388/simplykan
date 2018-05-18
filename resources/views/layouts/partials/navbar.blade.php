@@ -7,19 +7,20 @@
         </a>
 
         <ul class="uk-navbar-nav">
-
             @auth
                 <li>
                     <a href="#">Projects</a>
                     <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
-                            <li class="uk-nav-header">Current Project</li>
+                            @if($currentUser->currentProject)
+                                <li class="uk-nav-header">Current Project</li>
 
-                            <li>
-                                <a href="{{ route('showProject', $currentUser->currentProject) }}">
-                                    {{ $currentUser->currentProject->title }}
-                                </a>
-                            </li>
+                                <li>
+                                    <a href="{{ route('showProject', $currentUser->currentProject) }}">
+                                        {{ $currentUser->currentProject->title }}
+                                    </a>
+                                </li>
+                            @endif
 
                             <li class="uk-nav-header">Recent Projects</li>
 
