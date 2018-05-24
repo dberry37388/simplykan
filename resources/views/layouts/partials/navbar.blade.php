@@ -10,31 +10,55 @@
             @auth
                 <li>
                     <a href="#">Projects</a>
-                    <div class="uk-navbar-dropdown">
-                        <ul class="uk-nav uk-navbar-dropdown-nav">
-                            @if($currentUser->currentProject)
-                                <li class="uk-nav-header">Current Project</li>
+                    <div class="uk-width-small uk-overflow-auto" uk-dropdown>
+                        <div class="uk-dropdown-grid" uk-grid>
+                            <div>
+                                <ul class="uk-nav uk-dropdown-nav">
+                                    @if($currentUser->currentProject)
+                                        <li class="uk-nav-header">Current Project</li>
 
-                                <li>
-                                    <a href="{{ route('showProject', $currentUser->currentProject) }}">
-                                        {{ $currentUser->currentProject->title }}
-                                    </a>
-                                </li>
-                            @endif
+                                        <li>
+                                            <a href="{{ route('showProject', $currentUser->currentProject) }}">
+                                                {{ $currentUser->currentProject->title }}
+                                            </a>
+                                        </li>
+                                    @endif
 
-                            <li class="uk-nav-header">Recent Projects</li>
-
-                            @forelse ($recentProjects as $project)
-                                <li>
-                                    <a href="{{ route('switchProject', $project) }}">{{ $project->title }}</a>
-                                </li>
-                            @empty
-                                <li>
-                                    <a href="{{ route('createProject') }}"> No recent projects. Create one?</a>
-                                </li>
-                            @endforelse
-                        </ul>
+                                    @if ($recentProjects->count() >= 1)
+                                        <li class="uk-nav-header">Recent Projects</li>
+                                        @foreach ($recentProjects as $project)
+                                            <li>
+                                                <a href="{{ route('switchProject', $project) }}">{{ $project->title }}</a>
+                                             </li>
+                                        @endforeach
+                                    @endif
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
+                    {{--<div class="uk-navbar-dropdown">--}}
+                        {{--<ul class="uk-nav uk-navbar-dropdown-nav">--}}
+                            {{--@if($currentUser->currentProject)--}}
+                                {{--<li class="uk-nav-header">Current Project</li>--}}
+
+                                {{--<li>--}}
+                                    {{--<a href="{{ route('showProject', $currentUser->currentProject) }}">--}}
+                                        {{--{{ $currentUser->currentProject->title }}--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                            {{--@endif--}}
+
+                            {{--@if ($recentProjects->count() >= 1)--}}
+                            {{--<li class="uk-nav-header">Recent Projects</li>--}}
+                                {{--@foreach ($recentProjects as $project)--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{ route('switchProject', $project) }}">{{ $project->title }}</a>--}}
+                                    {{--</li>--}}
+                                {{--@endforeach--}}
+                            {{--@endif--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
                 </li>
             @endauth
 
